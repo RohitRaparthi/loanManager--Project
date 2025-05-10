@@ -2,12 +2,18 @@ const express = require("express");
 const path = require("path");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cors = require('cors');
 
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 
 const dbPath = path.join(__dirname, "loanmanager.db");
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
+
 app.use(express.json());
 
 let db = null;
